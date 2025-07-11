@@ -30,4 +30,12 @@ public class homeController {
 			return "Server Error";
 		}
 	}
+	@GetMapping("/register")
+	public String register(){
+		return "Register Page";
+	}
+	@GetMapping("/signin")
+	public String signin(){
+		return "SignIn Page";
+	}
 }
