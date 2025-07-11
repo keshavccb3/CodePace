@@ -6,9 +6,6 @@ import com.code.pace.model.Task;
 import com.code.pace.model.User;
 
 @Service
-public interface UserService {
-	public User saveUser(User user);
-
-	public User findByEmail(String email);
-
+public interface TaskService {
+	public Task saveTask(Task task, User user); 
 }
