@@ -1,5 +1,7 @@
 package com.code.pace.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,21 @@ public class TaskServiceImpl implements TaskService{
 		task.setUser(user);
 		taskRepository.save(task);
 		return task;
+	}
+
+	@Override
+	public Task findById(Integer id) {
+		return taskRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Task> getAllTaskByUser(User user) {
+		return taskRepository.findByUserId(user.getId());
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		taskRepository.deleteById(id);
 	}
 
 }
