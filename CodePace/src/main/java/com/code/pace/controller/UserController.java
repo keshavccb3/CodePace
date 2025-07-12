@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.code.pace.common.CommonUtil;
@@ -71,6 +72,35 @@ public class UserController {
 			taskService.deleteById(id);
 			return "Task Deleted";
 		}
+	}
+	@PostMapping("/connectWithCodeforces")
+	public String connectWithCodeforces(@RequestBody User user) {
+		String status = userService.isCfHandleExist(user.getCodeForcesId());
+		if(status.equals("OK")) {
+			int probId = userService.generateRandomProblem();
+			if(probId==-1) {
+				return "Internal Error";
+			}
+			String problem = "https://codeforces.com/problemset/problem/"+probId+"/A";
+			return problem;
+
+		}
+		return "ID Not found";
+		
+	}
+	@GetMapping("/verifyProblem")
+	public String verifyProblem(@RequestParam String codeForcesId, @RequestParam Integer contestId, Principal p) {
+	    String status = userService.verifyProblem(codeForcesId,contestId);
+	    if("OK".equals(status)) {
+	    	User user = commonUtil.getLoggedInUserDetails(p);
+	    	User user1 = userService.findByEmail(user.getEmail());
+	    	user1.setCodeForcesId(codeForcesId);
+	    	userService.updateUser(user1);
+	    	return "Succefully Connected";
+	    }else if("FAIL".equals(status)) {
+	    	return "Please Verify Again";
+	    }
+	    return "Internal Error";
 	}
 	
 }

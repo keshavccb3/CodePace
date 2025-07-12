@@ -11,4 +11,12 @@ public interface UserService {
 
 	public User findByEmail(String email);
 
+	public String isCfHandleExist(String codeForcesId);
+
+	public int generateRandomProblem();
+
+	public String verifyProblem(String codeForcesId, Integer contestId);
+
+	public void updateUser(User user1);
+
 }
