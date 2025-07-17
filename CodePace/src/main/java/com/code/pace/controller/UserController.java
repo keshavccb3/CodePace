@@ -81,16 +81,16 @@ public class UserController {
 	    User user = commonUtil.getLoggedInUserDetails(p);
 	    return taskService.getAllTaskByUser(user);
 	}
-//	@DeleteMapping("/deleteTask/{id}")
-//	public String deteteTask(@PathVariable Integer id) {
-//		Task task1 = taskService.findById(id);
-//		if(task1 == null) {
-//			return "Task Not Present";
-//		}else {
-//			taskService.deleteById(id);
-//			return "Task Deleted";
-//		}
-//	}
+	@DeleteMapping("/deleteTask/{id}")
+	public String deteteTask(@PathVariable Integer id) {
+		Task task1 = taskService.findById(id);
+		if(task1 == null) {
+			return "Task Not Present";
+		}else {
+			taskService.deleteById(id);
+			return "Task Deleted";
+		}
+	}
 	@PostMapping("/connectWithCodeforces")
 	public String connectWithCodeforces(@RequestBody User user) {
 		String status = userService.isCfHandleExist(user.getCodeForcesId());
