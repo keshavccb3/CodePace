@@ -54,16 +54,16 @@ public class UserController {
 	public String userHome(Principal p){
 	    return "Welcome, " + commonUtil.getLoggedInUserDetails(p).getEmail();
 	}
-	@PostMapping("/addTask")
-	public String addTask(@RequestBody Task task, Principal p) {
-		User user = commonUtil.getLoggedInUserDetails(p);
-		Task task1 = taskService.saveTask(task,user);
-		if(!ObjectUtils.isEmpty(task1)) {
-			return "Task Added Successfully";
-		}else {
-			return "Server Error";
-		}
-	}
+//	@PostMapping("/addTask")
+//	public String addTask(@RequestBody Task task, Principal p) {
+//		User user = commonUtil.getLoggedInUserDetails(p);
+//		Task task1 = taskService.saveTask(task,user);
+//		if(!ObjectUtils.isEmpty(task1)) {
+//			return "Task Added Successfully";
+//		}else {
+//			return "Server Error";
+//		}
+//	}
 	@PutMapping("/updateTask/{id}")
 	public String updateTask(@PathVariable Integer id, @RequestBody Task task, Principal p) {
 		User user = commonUtil.getLoggedInUserDetails(p);
