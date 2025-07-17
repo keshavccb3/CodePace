@@ -54,28 +54,28 @@ public class UserController {
 	public String userHome(Principal p){
 	    return "Welcome, " + commonUtil.getLoggedInUserDetails(p).getEmail();
 	}
-//	@PostMapping("/addTask")
-//	public String addTask(@RequestBody Task task, Principal p) {
-//		User user = commonUtil.getLoggedInUserDetails(p);
-//		Task task1 = taskService.saveTask(task,user);
-//		if(!ObjectUtils.isEmpty(task1)) {
-//			return "Task Added Successfully";
-//		}else {
-//			return "Server Error";
-//		}
-//	}
-	@PutMapping("/updateTask/{id}")
-	public String updateTask(@PathVariable Integer id, @RequestBody Task task, Principal p) {
+	@PostMapping("/addTask")
+	public String addTask(@RequestBody Task task, Principal p) {
 		User user = commonUtil.getLoggedInUserDetails(p);
-		Task task1 = taskService.findById(id);
-		if(task1 == null) {
-			return "Task Not Present";
+		Task task1 = taskService.saveTask(task,user);
+		if(!ObjectUtils.isEmpty(task1)) {
+			return "Task Added Successfully";
 		}else {
-			task1.setDescription(task.getDescription());
-			taskService.saveTask(task1, user);
-			return "Task Updated";
+			return "Server Error";
 		}
 	}
+//	@PutMapping("/updateTask/{id}")
+//	public String updateTask(@PathVariable Integer id, @RequestBody Task task, Principal p) {
+//		User user = commonUtil.getLoggedInUserDetails(p);
+//		Task task1 = taskService.findById(id);
+//		if(task1 == null) {
+//			return "Task Not Present";
+//		}else {
+//			task1.setDescription(task.getDescription());
+//			taskService.saveTask(task1, user);
+//			return "Task Updated";
+//		}
+//	}
 	@GetMapping("/allTask")
 	public List<Task> allTask(Principal p) {
 	    User user = commonUtil.getLoggedInUserDetails(p);
