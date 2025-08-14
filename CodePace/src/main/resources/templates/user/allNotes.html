@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>All Notes</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+	<section>
+		<div class="container" style="margin-bottom: 500px">
+
+			<th:block th:if="${notes.size() == 0}">
+				<div class="text-center mt-5">
+					<p class="fs-2">Add some Notes !!</p>
+				</div>
+			</th:block>
+
+			<th:block th:unless="${notes.size() == 0}">
+				<div class="row mt-4 g-4">
+					<div th:each="n : ${notes}" class="col-md-4 col-sm-6">
+						<div class="card shadow-sm text-center p-3">
+
+							<i class="fa-solid fa-file-pdf fa-3x text-danger"
+								th:if="${#strings.endsWith(n.fileName, '.pdf')}"></i> <i
+								class="fa-solid fa-file-image fa-3x text-info"
+								th:if="${#strings.endsWith(n.fileName, '.jpg') or #strings.endsWith(n.fileName, '.png')}"></i>
+							<i class="fa-solid fa-file-lines fa-3x text-secondary"
+								th:unless="${#strings.endsWith(n.fileName, '.pdf') or #strings.endsWith(n.fileName, '.jpg') or #strings.endsWith(n.fileName, '.png')}"></i>
+
+							<h5 class="card-title mt-3" th:text="${n.title}">Note Title</h5>
+
+							<div class="d-flex justify-content-between mt-2">
+								<a th:href="@{/pdf/{fileName}(fileName=${n.fileName})}"
+									class="btn btn-primary btn-sm" target="_blank"> Open </a> <a
+									th:href="@{/user/deleteNotes/{id}(id=${n.id})}"
+									class="btn btn-danger btn-sm"
+									onclick="return confirm('Are you sure you want to delete this note?');">
+									Delete </a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</th:block>
+
+		</div>
+	</section>
+</body>
+</html>

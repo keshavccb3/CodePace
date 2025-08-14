@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+</head>
+<body>
+	<section>
+		<div class="container my-5">
+			<div class="row justify-content-center">
+				<div class="card col-md-6 shadow-sm border-0" style="margin-bottom:300px;">
+
+					<div class="card-header bg-light text-center">
+						<h4 class="mb-0">Profile</h4>
+						<th:block
+							th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+							<p class="text-success alert alert-success text-center"
+								role="alert">[[${session.succMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+						</th:block>
+						<th:block th:if="${session.errorMsg}">
+							<p class="text-danger alert alert-danger text-center"
+								role="alert">[[${session.errorMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+						</th:block>
+					</div>
+
+					<div class="card-body">
+
+						<div class="mb-3">
+							<label class="form-label fw-bold text-secondary">Name</label> <input
+								type="text" class="form-control" th:value="${user.name}"
+								readonly>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label fw-bold text-secondary">Email</label> <input
+								type="text" class="form-control" th:value="${user.email}"
+								readonly>
+						</div>
+
+						<div class="mb-3" th:if="${user.codeForcesId != null}">
+							<label class="form-label fw-bold text-secondary">Codeforces
+								ID</label> <input type="text" class="form-control"
+								th:value="${user.codeForcesId}" readonly>
+						</div>
+
+						<div class="text-center mt-4">
+							<a th:if="${user.codeForcesId == null}" href="/user/cfId"
+								class="btn btn-outline-success px-4"> Connect with
+								Codeforces </a> <a th:if="${user.codeForcesId != null}" href="/user/disconnectWithCodeforces"
+								class="btn btn-outline-danger px-4"> Disconnect from
+								Codeforces </a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

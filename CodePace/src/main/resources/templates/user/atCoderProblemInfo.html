@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<th:block th:if="${prob==null}">
+					<div class="col-md-6 offset-md-3">
+						<div class="card mt-3" style="margin-bottom: 450px;">
+							<div class="card-header text-center">
+
+								<p class="fs-3">Get Problem</p>
+								<th:block
+									th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+									<p class="text-success alert alert-success text-center"
+										role="alert">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+								</th:block>
+								<th:block th:if="${session.errorMsg}">
+									<p class="text-danger alert alert-danger text-center"
+										role="alert">[[${session.errorMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+								</th:block>
+							</div>
+							<div class="card-body">
+								<form action="/user/getAtCoderProblem" method="post">
+									<div class="mt-3">
+										<lable>Difficulty</lable>
+										<select class="form-control mt-1" name="difficulty" required>
+											<option value="">--select--</option>
+											<option value="easy">Easy</option>
+											<option value="medium">Medium</option>
+											<option value="hard">Hard</option>
+										</select>
+									</div>
+									<div class="mt-4 text-center">
+										<button class="btn btn-secondary btn-md mt-3" type="submit">Find</button>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</th:block>
+				<th:block th:unless="${prob==null}">
+					<div class="col-md-6 offset-md-3">
+						<div class="card mt-3" style="margin-bottom: 450px;">
+							<div class="card-header text-center">
+
+								<p class="fs-3">Solve Problem</p>
+								<th:block
+									th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+									<p class="text-success alert alert-success text-center"
+										role="alert">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+								</th:block>
+								<th:block th:if="${session.errorMsg}">
+									<p class="text-danger alert alert-danger text-center"
+										role="alert">[[${session.errorMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+								</th:block>
+							</div>
+							<div class="card-body">
+								<div class="mt-3">
+									<lable>Difficulty</lable>
+									<select class="form-control mt-1" name="difficulty" required>
+										<option value="">--select--</option>
+										<option value="easy"
+											th:selected="${'easy'.equals(problem.difficulty)}">Easy</option>
+										<option value="medium"
+											th:selected="${'medium'.equals(problem.difficulty)}">Medium</option>
+										<option value="hard"
+											th:selected="${'hard'.equals(problem.difficulty)}">Hard</option>
+									</select>
+								</div>
+								<div class="row mt-4 text-center justify-content-between">
+									<div class="col-md-3">
+										<a th:if="${!'Empty'.equals(prob)}" th:href="${prob}"
+											target="_blank" class="btn btn-secondary btn-md mt-3">
+											Solve </a> <a th:if="${'Empty'.equals(prob)}"
+											href="javascript:void(0)"
+											class="btn btn-secondary btn-md mt-3 disabled"
+											title="No problem to solve"> Solve </a>
+									</div>
+									<div class="col-md-3">
+										<a href="/user/atCoderProblemInfo"
+											class="btn btn-secondary btn-md mt-3">Reset</a>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</th:block>
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

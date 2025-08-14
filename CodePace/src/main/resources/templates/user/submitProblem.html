@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card mt-3" style="margin-bottom: 350px;">
+						<div class="card-header text-center">
+
+							<p class="fs-3">submit this problem as compilation error than
+								within one minute click on verify</p>
+							<th:block
+								th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+								<p class="text-success alert alert-success text-center"
+									role="alert">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errorMsg}">
+								<p class="text-danger alert alert-danger text-center"
+									role="alert">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+							</th:block>
+						</div>
+						<div class="card-body">
+							<div class="row mt-4 text-center justify-content-between">
+								<div class="col-md-3">
+									<a th:href="${prob}" target="_blank"
+										class="btn btn-secondary btn-md mt-3"> Problem </a>
+								</div>
+								<div class="col-md-3">
+									<a
+										th:href="@{/user/verifyProblem(codeForcesId=${codeForcesId}, contestId=${contestId})}"
+										class="btn btn-secondary btn-md mt-3"> Verify </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

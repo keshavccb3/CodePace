@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container"  style="margin-bottom:190px;">
+			<div class="row justify-content-center">
+				<div class="card shadow p-3 mb-5 mt-3 bg-light col-md-6 rounded-4">
+					<div class="card-header mb-5 text-center">
+						<p class="fs-2">Login</p>
+						<div th:if="${param.error}" class="alert alert-danger text-center">
+							<th:block th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
+										[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+							</th:block>
+						</div>
+						<div th:if="${param.logout}"
+							class="alert alert-success text-center">Logout Successfully</div>
+					</div>
+					<div class="card-body">
+						<form action="/login" method="post">
+							<div class="mb-3 row">
+								<label class="col-sm-2 col-form-label fs-6">Email</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="username" type="email"
+										required>
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-2 col-form-label fs-6">Password</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="password" type="password"
+										required>
+								</div>
+							</div>
+							<div class="mb-3 row justify-content-center ">
+								<div class="col-md-4">
+									<button
+										class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2"
+										type="submit">Sign In</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

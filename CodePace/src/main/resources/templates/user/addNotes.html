@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Add Notes</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card mt-3" style="margin-bottom: 350px;">
+						<div class="card-header text-center">
+							<p class="fs-3">Add Notes</p>
+							<th:block
+								th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+								<p class="text-success alert alert-success text-center"
+									role="alert">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errorMsg}">
+								<p class="text-danger alert alert-danger text-center"
+									role="alert">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+							</th:block>
+						</div>
+						<div class="card-body">
+							<form action="/user/addNotes" method="post"
+								enctype="multipart/form-data">
+								<div class="mt-3">
+									<label>Title</label> <input class="form-control" name="title"
+										type="text" required>
+								</div>
+								<div class="mt-3">
+									<label>Upload File</label> <input class="form-control"
+										name="file" type="file" accept=".pdf,.jpg,.png" required>
+								</div>
+
+								<div class="mt-4 text-center">
+									<button class="btn btn-secondary btn-md mt-3" type="submit">Save</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

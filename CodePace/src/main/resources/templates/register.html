@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container" style="margin-bottom:150px;">
+			<div class="row justify-content-center">
+				<div class="card shadow p-3 mb-5 mt-3 bg-light col-md-6 rounded-4">
+					<div class="card-header mb-5 text-center">
+						<p class="fs-2">Sign Up</p>
+					</div>
+					<div class="card-body">
+						<form action="/saveUser" method="post">
+							<div class="mb-3 row">
+								<label class="col-sm-2 col-form-label fs-6">Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="name" type="text"
+										required>
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-2 col-form-label fs-6">Email</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="email" type="email"
+										required>
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-2 col-form-label fs-6">Password</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="password" type="password"
+										required>
+								</div>
+							</div>
+							<div class="mb-3 row justify-content-center">
+								<div class="col-md-4">
+									<button
+										class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2"
+										type="submit">Sign Up</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

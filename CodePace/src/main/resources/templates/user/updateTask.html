@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="card mt-5" style="margin-bottom: 475px;">
+				<div class="card-header">
+					<p class="text-center fs-3">Update Task</p>
+				</div>
+				<div class="card-body">
+					<form action="/user/updateTask" method="post">
+						<input type="hidden" name="id" th:value="${task.id}" /> <label
+							class="col-sm-2 col-form-label fs-5">Description</label>
+						<div class="col-sm">
+							<input class="form-control mb-3 py-3" name="description"
+								type="text" th:value="${task.description}" required>
+						</div>
+						<div class="col-sm text-center">
+							<button class="btn btn-secondary btn-md col-md-1 mt-3"
+								type="submit">Update</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

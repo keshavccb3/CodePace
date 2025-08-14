@@ -22,8 +22,5 @@ public class User {
 	private String email;
 	private String password;
 	private String codeForcesId;
-	private String leetCodeId;
-	private String codeChefId;
-	private String atCoderId;
 	private String role;
 }

@@ -44,7 +44,7 @@ public class SecurityConfig {
 	        .formLogin(form -> form
 	            .loginPage("/signin")
 	            .loginProcessingUrl("/login")
-	            .defaultSuccessUrl("/")
+	            .defaultSuccessUrl("/user/cfProblemInfo")
 	        )	
 	        .logout(logout -> logout.permitAll());
 

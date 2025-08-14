@@ -1,9 +1,12 @@
 package com.code.pace.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.code.pace.model.Notes;
+import com.code.pace.model.User;
 import com.code.pace.repository.NotesRepository;
 import com.code.pace.service.NotesService;
 
@@ -26,6 +29,11 @@ public class NotesServiceImpl implements NotesService{
 	public void deleteById(Integer id) {
 		notesRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public List<Notes> findByUser(User user) {
+		return notesRepository.findByUser(user);
 	}
 
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="card mt-5" style="margin-bottom: 475px;">
+				<div class="card-header">
+					<p class="text-center fs-3">Add Task</p>
+					<th:block th:if="${session.succMsg != null and session.succMsg != 'Deleted Successfully'}">
+						<p class="text-success alert alert-success text-center"
+							role="alert">[[${session.succMsg}]]</p>
+						<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+					</th:block>
+					<th:block th:if="${session.errorMsg}">
+						<p class="text-danger alert alert-danger text-center" role="alert">[[${session.errorMsg}]]</p>
+						<th:block th:text="${@commonServiceImpl.removeSessionMessage}"></th:block>
+					</th:block>
+
+				</div>
+				<div class="card-body">
+					<form action="/user/addTask" method="post">
+						<label class="col-sm-2 col-form-label fs-5">Description</label>
+						<div class="col-sm">
+							<input class="form-control mb-3 py-3" name="description"
+								type="text" required>
+						</div>
+						<div class="col-sm text-center">
+							<button class="btn btn-secondary btn-md col-md-1 mt-3"
+								type="submit">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

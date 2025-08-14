@@ -118,7 +118,6 @@ public class ProblemServiceImpl implements ProblemService{
 						            String index = p.path("index").asText();
 						            solvedProblemId.add(contestId);
 						            solvedProblemIndex.add(index);
-						            break;
 		        				}
 				        	}
 				            
