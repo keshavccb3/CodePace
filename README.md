@@ -14,3 +14,8 @@ It allows you to store notes, manage to-do tasks, and integrate with popular com
 -  **AtCoder Integration**:  
   - Fetch random problems based on chosen difficulty level.  
   - Helps in structured problem-solving practice.
+
+---
+
+## Author
+Keshav Aggarwal
