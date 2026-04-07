@@ -5,12 +5,12 @@ It allows you to store notes, manage to-do tasks, and integrate with popular com
 
 ---
 
-## 🚀 Features
-- 📝 **Notes**: Save and manage your personal coding notes.
-- ✅ **To-Do List**: Create and track coding or learning tasks.
-- 🎯 **Codeforces Integration**:  
+## Features
+-  **Notes**: Save and manage your personal coding notes.
+-  **To-Do List**: Create and track coding or learning tasks.
+-  **Codeforces Integration**:  
   - Connect your Codeforces account.  
   - Get random unsolved problems to practice.
-- 📊 **AtCoder Integration**:  
+-  **AtCoder Integration**:  
   - Fetch random problems based on chosen difficulty level.  
   - Helps in structured problem-solving practice.
